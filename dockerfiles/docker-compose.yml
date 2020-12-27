@@ -1,0 +1,14 @@
+version : '3.8'
+services:
+  mariadb:
+    image: mariadb.10.5.8
+    container_name: laravelproject1-dev-mariadb
+    restart: always
+    environment: 
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=laravelproject1
+    volumes
+      -  mariadb-host:/var/lib/mysql
+volumes: #docker가 관리하는 가상 디스크
+  mariadb-host:{}
+
