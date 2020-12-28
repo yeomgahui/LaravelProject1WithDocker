@@ -5,10 +5,22 @@ services:
     container_name: laravelproject1-dev-mariadb
     restart: always
     environment: 
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=laravelproject1
-    volumes
-      -  mariadb-host:/var/lib/mysql
-volumes: #docker가 관리하는 가상 디스크
-  mariadb-host:{}
+      - MYSQL_ROOT_PASSWORD= 1234
+    #  - MYSQL_DATABASE=laravelproject1
+   # volumes:
+   #   -  mariadb-host:/var/lib/mysql
+    ports: 
+      - 6603:3306
+  phpmyadmin:
+      depends_on:
+        - mariadb
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: phpmyadmin
+      restart: always
+      ports:
+        - 8080:80
+      environment: 
+        PMA_HOST: mariadb
+#volumes: #docker가 관리하는 가상 디스크
+#  mariadb-host:{}
 
